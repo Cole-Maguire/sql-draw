@@ -28,16 +28,14 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
 
+    - run: mv index.html dist && zip release.zip dist/*  
     - run: git --work-tree dist add --all
+    - run: grep -v "dist" .gitignore > temp && mv temp .gitignore
     - run: git config user.email "donotreply@colemaguire.me" &&  git config user.name "Github Action"
+
     - run: git --work-tree dist commit -m 'Deploy'
     - run: git push origin HEAD:gh-pages --force
-    - run: git checkout -f master
-    - run: git branch -D gh-pages
-
-    - run: |
-          mv index.html dist && zip release.zip dist/*  
-    - run: git subtree push --prefix dist origin gh-pages
+  
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
