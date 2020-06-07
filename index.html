@@ -3,18 +3,27 @@
 
 <head>
     <meta charset="utf-8">
+    <style>
+        #main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%
+        }
+    </style>
+    <script src="dist/main.js" defer></script>
 </head>
 
 <body>
+    <h1>sql-draw</h1>
+    Visualize the tables and relationships in an SQL SELECT query without any prior knowledge of the schema
+    <div id="main-content">
+        <textarea id="sql">SELECT a.x, b.one from tbl1 a inner join b on a.y=b.two</textarea>
+        <textarea id="mermaid-text" disabled></textarea>
 
-    <textarea id="sql">SELECT a.x, b.one from tbl1 a inner join b on a.y=b.two</textarea>
-    <textarea id="mermaid-text" disabled></textarea>
-
-    <div id="mermaid-graph">
-        <svg id="mermaid-graph-inner"></svg>
-
+        <div id="mermaid-graph">
+            <svg id="mermaid-graph-inner"></svg>
+        </div>
     </div>
-    <script src="dist/main.js"></script>
 </body>
 
 </html>
