@@ -17,7 +17,10 @@
     <h1>sql-draw</h1>
     Visualize the tables and relationships in an SQL SELECT query without any prior knowledge of the schema
     <div id="main-content">
-        <textarea id="sql">SELECT a.x, b.one from tbl1 a inner join b on a.y=b.two</textarea>
+        <textarea id="sql">SELECT a.x, b.one 
+            FROM tbl1 as a 
+            INNER JOIN b on a.y=b.two
+        </textarea>
         <textarea id="mermaid-text" disabled></textarea>
 
         <div id="mermaid-graph">
