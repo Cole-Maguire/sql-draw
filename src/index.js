@@ -38,7 +38,7 @@ function recurseColumns(object) {
 }
 
 function parseSql(sql) {
-  const ast = parser.astify(sql);
+  const ast = parser.astify(sql, { database: 'PostgresQL' });
   console.debug(ast);
 
   if (ast.type !== 'select') {
