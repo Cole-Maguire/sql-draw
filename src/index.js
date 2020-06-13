@@ -38,8 +38,13 @@ function recurseColumns(object) {
 }
 
 function parseSql(sql) {
-  const ast = parser.astify(sql, { database: 'PostgresQL' });
+  let ast = parser.astify(sql, { database: 'PostgresQL' });
   console.debug(ast);
+
+  if (Array.isArray(ast) && ast.length == 1) {
+    // For reasons I don't quite comprehend, the AST will sometimes be returned with a useless array wrapper
+    ast = ast[0]
+  }
 
   if (ast.type !== 'select') {
     console.error('Can only graph valid SELECT queries');
@@ -56,7 +61,6 @@ function parseSql(sql) {
   // The fact that we can put write all the detail we need without doing any nesting makes things a lot easier for a naive implementation.
   // Need to investigate if we need to investigate if there is any advantage to building up an object structure, rather than this multiple pass style
   // Mybe if we need to display info about pk/fks?
-  console.log(output)
   return 'classDiagram\n' + Array.from(new Set(output)).join('\n');//Remove duplicate definitions
 }
 
