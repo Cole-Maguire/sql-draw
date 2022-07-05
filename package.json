@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mermaid": "^8.5.1",
+    "mermaid": "^9.1.2",
     "node-sql-parser": "^2.0.6"
   },
   "devDependencies": {
